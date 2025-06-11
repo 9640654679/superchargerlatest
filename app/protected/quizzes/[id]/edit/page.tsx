@@ -197,13 +197,13 @@ export default function EditQuizPage() {
       <div className="rounded-2xl shadow-xl p-8 mb-8 bg-gradient-to-br from-primary/5 to-accent/10">
         <button
           type="button"
-          className="w-full flex items-center justify-center gap-2 py-4 px-6 bg-accent text-accent-foreground font-semibold rounded-full shadow-lg hover:shadow-xl transition-all text-lg disabled:opacity-70 disabled:cursor-not-allowed"
+          className="w-full flex items-center justify-center gap-2 py-2 px-3 bg-accent text-accent-foreground font-medium rounded-full shadow hover:shadow-md transition-all text-sm disabled:opacity-70 disabled:cursor-not-allowed"
           onClick={handleAIGenerateMore}
           disabled={aiLoading}
         >
           {aiLoading ? (
             <>
-              <svg className="animate-spin -ml-1 mr-2 h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
               </svg>
@@ -211,7 +211,7 @@ export default function EditQuizPage() {
             </>
           ) : (
             <>
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
               Generate More Questions with AI
@@ -239,33 +239,33 @@ export default function EditQuizPage() {
             onChange={e => setDescription(e.target.value)}
           />
         </div>
-        <div className="rounded-2xl shadow-xl p-8 bg-gradient-to-br from-primary/5 to-accent/10">
-          <label className="block font-semibold text-foreground mb-6 text-lg">Questions</label>
-          <div className="space-y-8">
+        <div className="rounded-xl shadow-md p-4 bg-gradient-to-br from-primary/5 to-accent/10">
+          <label className="block font-semibold text-foreground mb-3 text-base">Questions</label>
+          <div className="space-y-4">
             {questions.map((q, qIdx) => (
-              <div key={qIdx} className="border-l-4 border-primary bg-background rounded-2xl shadow p-6 hover:shadow-xl transition-all duration-200">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-y-2">
-                  <span className="font-semibold text-primary text-lg">Question {qIdx + 1}</span>
+              <div key={qIdx} className="border-l-4 border-primary bg-background rounded-xl shadow p-4 hover:shadow-lg transition-all duration-200">
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2 gap-y-2">
+                  <span className="font-semibold text-primary text-base">Question {qIdx + 1}</span>
                   <button
                     type="button"
-                    className="px-4 py-2 rounded-full bg-destructive/10 text-destructive font-semibold shadow hover:bg-destructive/20 transition-all text-sm"
+                    className="px-3 py-1 rounded-full bg-destructive/10 text-destructive font-medium shadow hover:bg-destructive/20 transition-all text-xs"
                     onClick={() => removeQuestion(qIdx)}
                   >
                     Remove
                   </button>
                 </div>
                 <input
-                  className="w-full border border-border rounded-lg p-3 mb-3 bg-background text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition text-base"
+                  className="w-full border border-border rounded-lg p-2 mb-2 bg-background text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition text-sm"
                   value={q.text}
                   onChange={e => updateQuestion(qIdx, "text", e.target.value)}
                   placeholder="Question text"
                   required
                 />
-                <div className="flex flex-wrap gap-3 mb-3">
+                <div className="flex flex-wrap gap-2 mb-2">
                   {q.options.map((opt: any, oIdx: number) => (
-                    <div key={oIdx} className="flex items-center gap-2 bg-accent/10 px-4 py-2 rounded-full shadow-sm">
+                    <div key={oIdx} className="flex items-center gap-2 bg-accent/10 px-3 py-1.5 rounded-full shadow-sm">
                       <input
-                        className="border border-border rounded-lg p-2 bg-background text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition text-sm"
+                        className="border border-border rounded-lg p-1.5 bg-background text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition text-xs"
                         value={opt.text}
                         onChange={e => updateOption(qIdx, oIdx, "text", e.target.value)}
                         placeholder={`Option ${oIdx + 1}`}
@@ -273,7 +273,7 @@ export default function EditQuizPage() {
                       />
                       <input
                         type="number"
-                        className="w-16 border border-border rounded-lg p-2 bg-background text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition text-sm"
+                        className="w-12 border border-border rounded-lg p-1.5 bg-background text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition text-xs"
                         value={opt.points}
                         onChange={e => updateOption(qIdx, oIdx, "points", Number(e.target.value))}
                         placeholder="Points"
@@ -282,7 +282,7 @@ export default function EditQuizPage() {
                       />
                       <button
                         type="button"
-                        className="px-2 py-1 rounded-full bg-destructive/10 text-destructive font-semibold hover:bg-destructive/20 transition-all text-xs"
+                        className="px-2 py-1 rounded-full bg-destructive/10 text-destructive font-medium hover:bg-destructive/20 transition-all text-xs"
                         onClick={() => removeOption(qIdx, oIdx)}
                       >
                         Remove
@@ -291,7 +291,7 @@ export default function EditQuizPage() {
                   ))}
                   <button
                     type="button"
-                    className="px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold shadow hover:bg-primary/20 transition-all text-sm"
+                    className="px-3 py-1 rounded-full bg-primary/10 text-primary font-medium shadow hover:bg-primary/20 transition-all text-xs"
                     onClick={() => addOption(qIdx)}
                   >
                     Add Option
@@ -299,7 +299,7 @@ export default function EditQuizPage() {
                 </div>
                 <input
                   type="number"
-                  className="w-24 border border-border rounded-lg p-2 bg-background text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition text-sm"
+                  className="w-16 border border-border rounded-lg p-1.5 bg-background text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition text-xs"
                   value={q.marks}
                   onChange={e => updateQuestion(qIdx, "marks", Number(e.target.value))}
                   placeholder="Marks"
@@ -310,7 +310,7 @@ export default function EditQuizPage() {
             ))}
             <button
               type="button"
-              className="px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold shadow-lg hover:shadow-xl transition-all text-lg"
+              className="px-3 py-1 rounded-full bg-primary text-primary-foreground font-medium shadow hover:shadow-md transition-all text-sm"
               onClick={addQuestion}
             >
               Add Question
@@ -320,7 +320,7 @@ export default function EditQuizPage() {
         <div className="sticky bottom-4 flex justify-end z-50">
           <button
             type="submit"
-            className="px-8 py-4 rounded-full bg-primary text-primary-foreground font-bold shadow-xl hover:shadow-2xl transition-all text-lg"
+            className="px-3 py-1 rounded-full bg-primary text-primary-foreground font-medium shadow hover:shadow-md transition-all text-sm"
             disabled={isPending}
           >
             {isPending ? "Saving..." : "Save Quiz"}

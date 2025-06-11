@@ -78,30 +78,37 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar {...props}>
-      <SidebarHeader>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <div className="flex items-center justify-between w-full p-1.5">
-              <SidebarMenuButton
-                asChild
-                className="data-[slot=sidebar-menu-button]:!p-1.5 flex-1"
-              >
-                <a href="/protected/dashboard">
-                  <span className="text-base font-semibold">SuperCharger</span>
-                </a>
-              </SidebarMenuButton>
-              <SidebarTrigger className="ml-2" />
-            </div>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={navMain} />
-        <NavSecondary items={navSecondary} className="mt-auto" />
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={user} onSignOut={handleSignOut} />
-      </SidebarFooter>
+      {/* Always show trigger at top when collapsed */}
+      <div className="group-data-[state=collapsed]/sidebar-wrapper:flex hidden flex-col items-center py-2 w-12 h-full">
+        <SidebarTrigger className="mt-2" />
+      </div>
+      {/* Show full sidebar content only when not collapsed */}
+      <div className="group-data-[state=collapsed]/sidebar-wrapper:hidden flex flex-col h-full">
+        <SidebarHeader>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <div className="flex items-center justify-between w-full p-1.5">
+                <SidebarMenuButton
+                  asChild
+                  className="data-[slot=sidebar-menu-button]:!p-1.5 flex-1"
+                >
+                  <a href="/protected/dashboard">
+                    <span className="text-base font-semibold">SuperCharger</span>
+                  </a>
+                </SidebarMenuButton>
+                <SidebarTrigger className="ml-2" />
+              </div>
+            </SidebarMenuItem>
+          </SidebarMenu>
+        </SidebarHeader>
+        <SidebarContent>
+          <NavMain items={navMain} />
+          <NavSecondary items={navSecondary} className="mt-auto" />
+        </SidebarContent>
+        <SidebarFooter>
+          <NavUser user={user} onSignOut={handleSignOut} />
+        </SidebarFooter>
+      </div>
     </Sidebar>
   );
 }

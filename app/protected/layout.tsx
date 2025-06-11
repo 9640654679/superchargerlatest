@@ -37,10 +37,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
 
   return (
     <SidebarProvider
-      style={{
-        "--sidebar-width": "calc(var(--spacing) * 72)",
-        "--header-height": "calc(var(--spacing) * 12)",
-      } as React.CSSProperties}
+  
     >
       <div className="flex w-full relative">
         <AppSidebar />
@@ -56,7 +53,7 @@ export default function ProtectedLayout({ children }: { children: ReactNode }) {
             <div className="@container/main flex flex-1 flex-col gap-2 ">
               {children}
             </div>
-          
+            
         </div>
       </div>
     </SidebarProvider>

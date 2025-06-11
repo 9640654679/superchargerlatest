@@ -178,18 +178,18 @@ export default function ViewQuizPage() {
         </div>
       </div>
 
-      <div className="rounded-2xl shadow-xl p-8 bg-gradient-to-br from-primary/5 to-accent/10">
-        <h2 className="text-2xl font-bold text-foreground mb-6">Questions ({questions.length})</h2>
-        <div className="space-y-8">
+      <div className="rounded-xl shadow-md p-4 bg-gradient-to-br from-primary/5 to-accent/10">
+        <h2 className="text-lg font-bold text-foreground mb-4">Questions ({questions.length})</h2>
+        <div className="space-y-4">
           {questions.map((q: any, idx: number) => (
-            <div key={q.id} className="border-l-4 border-primary bg-background rounded-2xl shadow p-6 hover:shadow-xl transition-all duration-200">
-              <h3 className="font-bold text-primary mb-2">Question {idx + 1}</h3>
-              <p className="text-lg text-foreground mb-4">{q.text}</p>
-              <div className="rounded-lg p-4 bg-muted/30">
-                <h4 className="font-semibold text-foreground mb-3">Options</h4>
-                <ul className="flex flex-wrap gap-3">
+            <div key={q.id} className="border-l-4 border-primary bg-background rounded-xl shadow p-4 hover:shadow-lg transition-all duration-200">
+              <h3 className="font-bold text-primary mb-1 text-base">Question {idx + 1}</h3>
+              <p className="text-foreground mb-2 text-sm">{q.text}</p>
+              <div className="rounded-lg p-3 bg-muted/30">
+                <h4 className="font-semibold text-foreground mb-2 text-sm">Options</h4>
+                <ul className="flex flex-wrap gap-2">
                   {q.options.map((opt: any, oIdx: number) => (
-                    <li key={opt.id} className="px-4 py-2 rounded-full bg-accent/10 text-accent-foreground font-medium shadow-sm hover:bg-accent/20 transition-all">
+                    <li key={opt.id} className="px-3 py-1.5 rounded-full bg-accent/10 text-accent-foreground font-medium shadow-sm hover:bg-accent/20 transition-all text-xs">
                       {opt.text}
                       <span className="ml-2 text-xs text-primary font-semibold">{opt.points} {opt.points === 1 ? 'pt' : 'pts'}</span>
                     </li>
