@@ -143,19 +143,19 @@ export default function QuizResponsesPage() {
   if (!quiz) return <div className="p-8">Quiz not found.</div>;
 
   return (
-    <div className="w-full max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto py-6 md:py-8 px-2 md:px-4 font-nunito">
-      <h1 className="text-xl md:text-2xl font-bold mb-2 text-primary">Responses for: {quiz.title}</h1>
-      <p className="mb-4 text-muted-foreground">{quiz.description}</p>
+    <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto py-10 px-2 md:px-4 font-nunito">
+      <h1 className="text-3xl md:text-4xl font-extrabold mb-2 text-primary">Responses for: {quiz.title}</h1>
+      <p className="mb-6 text-lg text-muted-foreground">{quiz.description}</p>
       <button
-        className="mb-4 w-full sm:w-auto px-4 py-2 bg-primary text-primary-foreground rounded font-semibold hover:bg-primary/90 disabled:opacity-50 transition"
+        className="mb-8 w-full sm:w-auto px-6 py-3 bg-primary text-primary-foreground rounded-full font-bold shadow-lg hover:shadow-xl transition text-lg"
         onClick={handleAnalyze}
         disabled={isAnalyzing || !responses.length || !questions.length}
       >
         {isAnalyzing ? "Analyzing..." : "Analyze with AI"}
       </button>
       {geminiSummary && (
-        <div className="mb-6">
-          <h2 className="font-semibold mb-4 text-primary">AI Analysis</h2>
+        <div className="mb-8">
+          <h2 className="font-semibold mb-4 text-primary text-xl">AI Analysis</h2>
           <div className="flex flex-col gap-4">
             {(() => {
               let sections = [];
@@ -186,27 +186,27 @@ export default function QuizResponsesPage() {
           </div>
         </div>
       )}
-      <div className="mb-6 flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-4 items-stretch sm:items-end">
+      <div className="mb-8 flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-6 items-stretch sm:items-end bg-gradient-to-br from-primary/5 to-accent/10 rounded-2xl shadow-xl p-6">
         <div>
-          <label className="block text-xs">From</label>
-          <input type="date" value={dateFrom} onChange={e => setDateFrom(e.target.value)} className="border border-border rounded p-1 w-full" />
+          <label className="block text-xs font-semibold mb-1">From</label>
+          <input type="date" value={dateFrom} onChange={e => setDateFrom(e.target.value)} className="border border-border rounded-full p-2 w-full" />
         </div>
         <div>
-          <label className="block text-xs">To</label>
-          <input type="date" value={dateTo} onChange={e => setDateTo(e.target.value)} className="border border-border rounded p-1 w-full" />
+          <label className="block text-xs font-semibold mb-1">To</label>
+          <input type="date" value={dateTo} onChange={e => setDateTo(e.target.value)} className="border border-border rounded-full p-2 w-full" />
         </div>
         <div>
-          <label className="block text-xs">Min Points</label>
-          <input type="number" value={minPoints} onChange={e => setMinPoints(e.target.value)} className="border border-border rounded p-1 w-full sm:w-20" />
+          <label className="block text-xs font-semibold mb-1">Min Points</label>
+          <input type="number" value={minPoints} onChange={e => setMinPoints(e.target.value)} className="border border-border rounded-full p-2 w-full sm:w-24" />
         </div>
         <div>
-          <label className="block text-xs">Max Points</label>
-          <input type="number" value={maxPoints} onChange={e => setMaxPoints(e.target.value)} className="border border-border rounded p-1 w-full sm:w-20" />
+          <label className="block text-xs font-semibold mb-1">Max Points</label>
+          <input type="number" value={maxPoints} onChange={e => setMaxPoints(e.target.value)} className="border border-border rounded-full p-2 w-full sm:w-24" />
         </div>
         <div>
-          <label className="block text-xs">Filter by Question</label>
+          <label className="block text-xs font-semibold mb-1">Filter by Question</label>
           <select
-            className="border border-border rounded p-1 w-full"
+            className="border border-border rounded-full p-2 w-full"
             value={selectedQuestionId}
             onChange={e => setSelectedQuestionId(e.target.value)}
           >
@@ -216,27 +216,39 @@ export default function QuizResponsesPage() {
             ))}
           </select>
         </div>
-        <div className="sm:ml-auto text-xs text-muted-foreground mt-2 sm:mt-0">Filtered: {filteredResponses.length} / {responses.length}</div>
+        <div className="sm:ml-auto text-xs text-muted-foreground mt-2 sm:mt-0 font-semibold">Filtered: {filteredResponses.length} / {responses.length}</div>
       </div>
-      <div className="mb-6">
-        <span className="font-semibold">Total Responses:</span> {totalResponses} <br />
-        <span className="font-semibold">Average Points:</span> {avgPoints} <br />
-        <span className="font-semibold">Min Points:</span> {minPointsVal} <br />
-        <span className="font-semibold">Max Points:</span> {maxPointsVal}
+      <div className="mb-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 p-4 shadow flex flex-col items-center">
+          <span className="text-2xl font-bold text-primary">{totalResponses}</span>
+          <span className="text-xs text-muted-foreground mt-1">Total Responses</span>
+        </div>
+        <div className="rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 p-4 shadow flex flex-col items-center">
+          <span className="text-2xl font-bold text-accent">{avgPoints}</span>
+          <span className="text-xs text-muted-foreground mt-1">Average Points</span>
+        </div>
+        <div className="rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 p-4 shadow flex flex-col items-center">
+          <span className="text-2xl font-bold text-green-600">{minPointsVal}</span>
+          <span className="text-xs text-muted-foreground mt-1">Min Points</span>
+        </div>
+        <div className="rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 p-4 shadow flex flex-col items-center">
+          <span className="text-2xl font-bold text-red-600">{maxPointsVal}</span>
+          <span className="text-xs text-muted-foreground mt-1">Max Points</span>
+        </div>
       </div>
-      <div className="mb-8">
-        <h2 className="font-semibold mb-2">Points Distribution</h2>
+      <div className="mb-10 rounded-2xl shadow-xl p-6 bg-gradient-to-br from-primary/5 to-accent/10">
+        <h2 className="font-semibold mb-2 text-lg">Points Distribution</h2>
         <Bar data={pointsBarData} />
       </div>
       {selectedQuestionId ? (
-        <div className="overflow-x-auto mb-8">
-          <table className="w-full border text-sm">
+        <div className="overflow-x-auto mb-10 rounded-2xl shadow-xl bg-gradient-to-br from-primary/5 to-accent/10 p-6">
+          <table className="w-full border text-sm rounded-2xl overflow-hidden">
             <thead>
               <tr className="bg-muted">
-                <th className="p-2 text-left">Respondent</th>
-                <th className="p-2 text-left">Submitted At</th>
-                <th className="p-2 text-left">Selected Option</th>
-                <th className="p-2 text-left">Points</th>
+                <th className="p-3 text-left">Respondent</th>
+                <th className="p-3 text-left">Submitted At</th>
+                <th className="p-3 text-left">Selected Option</th>
+                <th className="p-3 text-left">Points</th>
               </tr>
             </thead>
             <tbody>
@@ -245,11 +257,11 @@ export default function QuizResponsesPage() {
                 const ans = (resp.answers || []).find((a: any) => a.question_id === selectedQuestionId);
                 const opt = q?.options.find((o: any) => o.id === ans?.option_id);
                 return (
-                  <tr key={resp.id} className="border-t">
-                    <td className="p-2">{resp.respondent_name || "Anonymous"}</td>
-                    <td className="p-2">{resp.submitted_at ? new Date(resp.submitted_at).toLocaleString() : "-"}</td>
-                    <td className="p-2">{opt ? opt.text : <span className="text-muted-foreground">No answer</span>}</td>
-                    <td className="p-2">{opt ? opt.points : "-"}</td>
+                  <tr key={resp.id} className="border-t hover:bg-accent/10 transition-all">
+                    <td className="p-3">{resp.respondent_name || "Anonymous"}</td>
+                    <td className="p-3">{resp.submitted_at ? new Date(resp.submitted_at).toLocaleString() : "-"}</td>
+                    <td className="p-3">{opt ? opt.text : "-"}</td>
+                    <td className="p-3">{opt ? opt.points : "-"}</td>
                   </tr>
                 );
               })}
@@ -257,25 +269,29 @@ export default function QuizResponsesPage() {
           </table>
         </div>
       ) : (
-        <div className="overflow-x-auto mb-8">
-          <table className="w-full border text-sm">
+        <div className="overflow-x-auto mb-10 rounded-2xl shadow-xl bg-gradient-to-br from-primary/5 to-accent/10 p-6">
+          <table className="w-full border text-sm rounded-2xl overflow-hidden">
             <thead>
               <tr className="bg-muted">
-                <th className="p-2 text-left">Respondent</th>
-                <th className="p-2 text-left">Submitted At</th>
-                <th className="p-2 text-left">Points</th>
-                <th className="p-2 text-left">Details</th>
+                <th className="p-3 text-left">Respondent</th>
+                <th className="p-3 text-left">Submitted At</th>
+                {questions.map((q: any) => (
+                  <th key={q.id} className="p-3 text-left">{q.text}</th>
+                ))}
+                <th className="p-3 text-left">Total Points</th>
               </tr>
             </thead>
             <tbody>
               {filteredResponses.map((resp: any) => (
-                <tr key={resp.id} className="border-t">
-                  <td className="p-2">{resp.respondent_name || "Anonymous"}</td>
-                  <td className="p-2">{resp.submitted_at ? new Date(resp.submitted_at).toLocaleString() : "-"}</td>
-                  <td className="p-2">{getPointsForResponse(resp)}</td>
-                  <td className="p-2">
-                    <a href={`/protected/quizzes/${quizId}/responses/${resp.id}`} className="underline">View</a>
-                  </td>
+                <tr key={resp.id} className="border-t hover:bg-accent/10 transition-all">
+                  <td className="p-3">{resp.respondent_name || "Anonymous"}</td>
+                  <td className="p-3">{resp.submitted_at ? new Date(resp.submitted_at).toLocaleString() : "-"}</td>
+                  {questions.map((q: any) => {
+                    const ans = (resp.answers || []).find((a: any) => a.question_id === q.id);
+                    const opt = q.options.find((o: any) => o.id === ans?.option_id);
+                    return <td key={q.id} className="p-3">{opt ? opt.text : "-"}</td>;
+                  })}
+                  <td className="p-3 font-bold">{getPointsForResponse(resp)}</td>
                 </tr>
               ))}
             </tbody>

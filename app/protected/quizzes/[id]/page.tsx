@@ -102,13 +102,13 @@ export default function ViewQuizPage() {
   );
 
   return (
-    <div className="w-full max-w-lg md:max-w-2xl lg:max-w-4xl mx-auto py-8 md:py-10 px-2 md:px-4 font-nunito">
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
-        <h1 className="text-2xl md:text-3xl font-extrabold text-primary heading">{quiz.title}</h1>
-        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
+    <div className="w-full max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto py-10 px-2 md:px-4 font-nunito">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-10">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-primary heading">{quiz.title}</h1>
+        <div className="flex flex-row gap-3 w-full sm:w-auto justify-end">
           <Link
             href={`/protected/quizzes/${quizId}/edit`}
-            className="w-full sm:w-auto px-4 py-2 text-primary hover:bg-primary/10 transition rounded-lg font-semibold flex items-center gap-1 justify-center"
+            className="px-5 py-2 rounded-full bg-accent/20 text-accent-foreground font-semibold shadow hover:bg-accent/30 transition-all flex items-center gap-2"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
@@ -118,7 +118,7 @@ export default function ViewQuizPage() {
           </Link>
           <Link
             href={`/protected/quizzes/${quizId}/responses`}
-            className="w-full sm:w-auto px-4 py-2 text-accent hover:bg-accent/10 transition rounded-lg font-semibold flex items-center gap-1 justify-center"
+            className="px-5 py-2 rounded-full bg-primary/10 text-primary font-semibold shadow hover:bg-primary/20 transition-all flex items-center gap-2"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
@@ -128,9 +128,9 @@ export default function ViewQuizPage() {
         </div>
       </div>
 
-      <div className="rounded-xl shadow-md p-4 md:p-6 mb-8 ">
-        <h2 className="text-lg font-bold text-foreground mb-3">Description</h2>
-        <p className="text-muted-foreground mb-6">{quiz.description || "No description provided."}</p>
+      <div className="rounded-2xl shadow-xl p-8 mb-10 bg-gradient-to-br from-primary/5 to-accent/10">
+        <h2 className="text-xl font-bold text-foreground mb-3">Description</h2>
+        <p className="text-lg text-muted-foreground mb-6">{quiz.description || "No description provided."}</p>
         <div className="border-t border-border pt-5 mt-4">
           <h3 className="font-semibold text-foreground mb-3">Public Link</h3>
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
@@ -140,7 +140,7 @@ export default function ViewQuizPage() {
                   type="text"
                   value={getPublicQuizUrl()}
                   readOnly
-                  className="w-full p-3 bg-muted border border-border rounded-lg text-foreground"
+                  className="w-full p-3 bg-muted border border-border rounded-lg text-foreground cursor-pointer"
                   onClick={(e) => (e.target as HTMLInputElement).select()}
                 />
                 <button 
@@ -166,7 +166,7 @@ export default function ViewQuizPage() {
             </div>
             <Link 
               href={`/quiz/${quizId}`}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 bg-primary text-primary-foreground font-semibold rounded-lg shadow-md hover:shadow-lg transition-all text-center"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-semibold rounded-full shadow-lg hover:shadow-xl transition-all text-center"
               target="_blank"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -178,22 +178,20 @@ export default function ViewQuizPage() {
         </div>
       </div>
 
-      <div className="rounded-xl shadow-md p-4 md:p-6 ">
-        <h2 className="text-xl font-bold text-foreground mb-4">Questions ({questions.length})</h2>
-        <div className="space-y-6">
+      <div className="rounded-2xl shadow-xl p-8 bg-gradient-to-br from-primary/5 to-accent/10">
+        <h2 className="text-2xl font-bold text-foreground mb-6">Questions ({questions.length})</h2>
+        <div className="space-y-8">
           {questions.map((q: any, idx: number) => (
-            <div key={q.id} className="border border-border rounded-lg p-4 md:p-5 hover:border-primary/40 transition-all duration-200 bg-muted/40">
-              <h3 className="font-bold text-primary mb-3">Question {idx + 1}</h3>
-              <p className="text-foreground mb-4">{q.text}</p>
-              <div className="rounded-lg p-3 md:p-4 bg-muted/30">
+            <div key={q.id} className="border-l-4 border-primary bg-background rounded-2xl shadow p-6 hover:shadow-xl transition-all duration-200">
+              <h3 className="font-bold text-primary mb-2">Question {idx + 1}</h3>
+              <p className="text-lg text-foreground mb-4">{q.text}</p>
+              <div className="rounded-lg p-4 bg-muted/30">
                 <h4 className="font-semibold text-foreground mb-3">Options</h4>
-                <ul className="space-y-2">
+                <ul className="flex flex-wrap gap-3">
                   {q.options.map((opt: any, oIdx: number) => (
-                    <li key={opt.id} className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center py-2 px-3 rounded-lg border border-border transition-colors gap-2 sm:gap-0">
-                      <span>{opt.text}</span>
-                      <span className="text-accent px-3 py-1 rounded-full text-sm font-medium">
-                        {opt.points} {opt.points === 1 ? 'point' : 'points'}
-                      </span>
+                    <li key={opt.id} className="px-4 py-2 rounded-full bg-accent/10 text-accent-foreground font-medium shadow-sm hover:bg-accent/20 transition-all">
+                      {opt.text}
+                      <span className="ml-2 text-xs text-primary font-semibold">{opt.points} {opt.points === 1 ? 'pt' : 'pts'}</span>
                     </li>
                   ))}
                 </ul>

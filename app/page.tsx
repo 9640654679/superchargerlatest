@@ -14,6 +14,7 @@ import Features from "@/components/features";
 import Hero2 from "@/components/hero2";
 import Features2 from "@/components/features2";
 import { LampDemo } from "./lampdemo";
+import Navbar from "@/components/navbar";
 // import ConnectSupabaseSteps from "@/components/tutorial/connect-supabase-steps";
 // import SignUpUserSteps from "@/components/tutorial/sign-up-user-steps";
 // import { hasEnvVars } from "@/utils/supabase/check-env-vars";
@@ -21,6 +22,7 @@ import { LampDemo } from "./lampdemo";
 export default async function Home() {
   return (
     <>
+      <Navbar />
       {/* <Hero /> */}
       {/* <Hero/> */}
       <Hero2/>
