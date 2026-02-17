@@ -1,4 +1,4 @@
-# SuperCharger - Advanced Quiz & Survey Platform
+# SuperCharger -- Advanced Quiz & Survey Platform
 
 A comprehensive quiz and survey platform built with Next.js, Supabase, and AI integration. Create, manage, and analyze quizzes with powerful analytics and AI-powered insights.
 
